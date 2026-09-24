@@ -1,0 +1,27 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "hecho",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    { "pattern": "hecho.fyi", "custom_domain": true }
+  ],
+  "kv_namespaces": [
+    { "binding": "SIGNUPS", "id": "85fe001e457e48698792385588bf9526" }
+  ],
+  // Sends each sign-up to NOTIFY_TO. Free while NOTIFY_TO is a verified address in Email Routing.
+  "send_email": [
+    { "name": "NOTIFY" }
+  ],
+  "vars": {
+    "STRIPE_URL": "https://buy.stripe.com/test_dRm7sDbGC3TldVJbXl04800",
+    "NOTIFY_FROM": "hola@hecho.fyi",
+    "NOTIFY_TO": "byrne.saar@gmail.com"
+  },
+  "observability": { "enabled": true }
+}
