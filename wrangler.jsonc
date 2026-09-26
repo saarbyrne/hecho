@@ -19,7 +19,7 @@
     { "name": "NOTIFY" }
   ],
   "vars": {
-    "STRIPE_URL": "https://buy.stripe.com/test_dRm7sDbGC3TldVJbXl04800",
+    "STRIPE_URL": "https://buy.stripe.com/00w14ffEN11ve864p57g400",
     "NOTIFY_FROM": "hola@hecho.fyi",
     "NOTIFY_TO": "byrne.saar@gmail.com"
   },

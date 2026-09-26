@@ -17,10 +17,14 @@ npm run signups   # list the Hecho+ sign-ups
 
 `npx wrangler@4` runs Cloudflare's tool without installing it. The first run asks you to log in with `npx wrangler@4 login`.
 
+## Design
+
+The pages follow the Type led brand (Obsidian `Projects/Hecho/Brand/Type led.md`). The design file is `designs/landingpage.pen`. Fonts load from Bunny Fonts. `public/styles.css` is the old stylesheet and is no longer used.
+
 ## Structure
 
 ```
-public/          static pages, styles and icons
+public/          static pages (home, charla, traduce, verbos, plus, privacidad), site.css and icons
 src/worker.js    sign-up endpoint, then static files
 wrangler.jsonc   Worker, domain, KV and email settings
 tests/

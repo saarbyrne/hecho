@@ -3,40 +3,55 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Privacy · Hecho</title>
-  <meta name="description" content="How Hecho handles your data.">
-  <meta property="og:title" content="Privacy · Hecho">
-  <meta property="og:description" content="How Hecho handles your data.">
-  <meta name="theme-color" content="#f6f5f2" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#161513" media="(prefers-color-scheme: dark)">
-  <link rel="icon" href="/icons/hecho.svg" type="image/svg+xml">
+  <title>Privacy · hecho</title>
+  <meta name="description" content="How hecho handles your data.">
+  <meta property="og:title" content="Privacy · hecho">
+  <meta property="og:description" content="How hecho handles your data.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="/icons/hecho-32.png" type="image/png">
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="preconnect" href="https://fonts.bunny.net">
+  <link rel="stylesheet" href="https://fonts.bunny.net/css?family=bricolage-grotesque:800|instrument-sans:400,600|jetbrains-mono:400&display=swap">
+  <link rel="stylesheet" href="/site.css">
 </head>
 <body>
-  <header class="top">
-    <a class="brand" href="/"><img src="/icons/hecho.svg" alt="">Hecho</a>
-    <nav class="nav" aria-label="Main">
-      <a href="/">Apps</a>
-      <a href="/plus/">Hecho+</a>
-      <a href="/apoyar/">Support</a>
-    </nav>
-  </header>
-  <main class="main">
+  <nav class="nav" aria-label="Main">
+    <a class="logo" href="/">hecho</a>
+    <ul>
+      <li class="app-link"><a href="/charla/">charla</a></li>
+      <li class="app-link"><a href="/traduce/">traduce</a></li>
+      <li class="app-link"><a href="/verbos/">verbos</a></li>
+      <li><a href="/plus/">hecho+</a></li>
+      <li><a class="btn small" href="/apoyar/">Donate</a></li>
+    </ul>
+  </nav>
+  <main class="plain">
     <h1>Privacy</h1>
-    <div class="prose section" style="margin-top:24px">
-      <p><strong>Apps.</strong> Verbos, Charla and Traduce keep your practice in your own browser. Hecho has no accounts and no server that stores it. Charla sends your conversation to Google Gemini with your own key. Traduce sends selected text to MyMemory when your browser cannot translate it on the device.</p>
-      <p><strong>Hecho+ sign-up.</strong> If you leave your email, we store it with the date you signed up. We use it only to write about Hecho+. We do not share or sell it. To have it deleted, write to <a href="mailto:hola@hecho.fyi">hola@hecho.fyi</a>.</p>
-      <p><strong>Support.</strong> Payments are handled by Stripe under its own privacy policy. We see your name, email and the amount, and never your card details.</p>
-      <p><strong>This site.</strong> It sets no cookies and uses no analytics.</p>
-      <p class="small">Last updated 24 September 2026.</p>
-    </div>
+    <h2>Apps</h2>
+    <p>verbos, charla and traduce keep your practice in your own browser. hecho has no accounts and no server that stores it. charla sends your conversation to Google Gemini with your own key. traduce sends selected text to MyMemory when your browser cannot translate it on the device.</p>
+    <h2>hecho+ sign-up</h2>
+    <p>If you leave your email, we store it with the date you signed up. We use it only to write about hecho+. We do not share or sell it. To have it deleted, write to <a href="mailto:hola@hecho.fyi">hola@hecho.fyi</a>.</p>
+    <h2>Donations</h2>
+    <p>Payments are handled by Stripe under its own privacy policy. We see your name, email and the amount, and never your card details.</p>
+    <h2>This site</h2>
+    <p>It sets no cookies and uses no analytics. Fonts are served by Bunny Fonts, which says it does not log or track visitors.</p>
+    <p class="small" style="margin-top:32px">Last updated 26 September 2026.</p>
   </main>
   <footer class="foot">
-    <span class="grow">Hecho · Zamora</span>
-    <a href="/apoyar/">Support</a>
-    <a href="/privacidad/">Privacy</a>
-    <a href="mailto:hola@hecho.fyi">hola@hecho.fyi</a>
+    <nav aria-label="Footer">
+      <a class="logo" href="/">hecho</a>
+      <a href="/charla/">charla</a>
+      <a href="/traduce/">traduce</a>
+      <a href="/verbos/">verbos</a>
+      <a href="/plus/">hecho+</a>
+      <a href="mailto:hola@hecho.fyi">Support</a>
+      <a href="/privacidad/">Privacy</a>
+    </nav>
+    <div class="credits">
+      <span>Bricolage Grotesque · Mathieu Triay</span>
+      <span>Instrument Sans · Instrument</span>
+      <span>JetBrains Mono · JetBrains</span>
+    </div>
   </footer>
 </body>
 </html>

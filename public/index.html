@@ -3,73 +3,143 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Hecho · Spanish practice tools</title>
-  <meta name="description" content="Three free tools for practising Spanish: Verbos, Charla and Traduce.">
-  <meta property="og:title" content="Hecho · Spanish practice tools">
-  <meta property="og:description" content="Three free tools for practising Spanish: Verbos, Charla and Traduce.">
-  <meta name="theme-color" content="#f6f5f2" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#161513" media="(prefers-color-scheme: dark)">
-  <link rel="icon" href="/icons/hecho.svg" type="image/svg+xml">
+  <title>hecho · Spanish, a little every day</title>
+  <meta name="description" content="Three small, free apps for learning Spanish at your own pace: charla, traduce and verbos.">
+  <meta property="og:title" content="hecho · Spanish, a little every day">
+  <meta property="og:description" content="Three small, free apps for learning Spanish at your own pace: charla, traduce and verbos.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="/icons/hecho-32.png" type="image/png">
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="preconnect" href="https://fonts.bunny.net">
+  <link rel="stylesheet" href="https://fonts.bunny.net/css?family=bricolage-grotesque:800|instrument-sans:400,600|jetbrains-mono:400&display=swap">
+  <link rel="stylesheet" href="/site.css">
 </head>
 <body>
-  <header class="top">
-    <a class="brand" href="/"><img src="/icons/hecho.svg" alt="">Hecho</a>
-    <nav class="nav" aria-label="Main">
-      <a href="/" aria-current="page">Apps</a>
-      <a href="/plus/">Hecho+</a>
-      <a href="/apoyar/">Support</a>
-    </nav>
+  <header class="hero">
+    <span class="mark" aria-hidden="true">¡</span>
+  <nav class="nav" aria-label="Main">
+    <a class="logo" href="/">hecho</a>
+    <ul>
+      <li class="app-link"><a href="/charla/">charla</a></li>
+      <li class="app-link"><a href="/traduce/">traduce</a></li>
+      <li class="app-link"><a href="/verbos/">verbos</a></li>
+      <li><a href="/plus/">hecho+</a></li>
+      <li><a class="btn small" href="/apoyar/">Donate</a></li>
+    </ul>
+  </nav>
+    <h1 class="wordmark">hecho</h1>
+    <div class="text">
+      <p class="line">Spanish, a little every day.</p>
+      <p class="body">Three small, free apps for learning Spanish at your own pace. Talk, read and practise verbs.</p>
+      <div class="actions"><a class="btn" href="#apps">Pick an app</a></div>
+    </div>
   </header>
-  <main class="main">
-    <h1>Hecho</h1>
-    <p class="lede">Three free tools for practising Spanish. They run in your browser, with no account and no points.</p>
+  <main id="apps">
+  <section class="band charla" aria-labelledby="charla-title">
+    <div class="info">
+      <p class="label">Conversation</p>
+      <h2 class="line" id="charla-title">Talk it out.</h2>
+      <p class="body">Speak Spanish out loud with an AI partner. charla remembers what you talked about last time.</p>
+      <div class="actions">
+        <a class="btn" href="https://charla.hecho.fyi/">Open charla</a>
+        <a class="link" href="/charla/">More about charla</a>
+      </div>
+    </div>
+    <p class="huge" aria-hidden="true">charla</p>
+  </section>
+  <section class="band traduce" aria-labelledby="traduce-title">
+    <div class="info">
+      <p class="label">Browser translation</p>
+      <h2 class="line" id="traduce-title">Select a word.<br>Get it. Move on.</h2>
+      <p class="body">A browser extension for Chrome. Select Spanish or English on any page to see the translation in the corner.</p>
+      <div class="actions">
+        <a class="btn" href="https://chromewebstore.google.com/detail/cdbloidgfaclhajkkmlfnnamggoledmg">Add to Chrome</a>
+        <a class="link" href="/traduce/">More about traduce</a>
+      </div>
+    </div>
+    <p class="huge" aria-hidden="true">traduce</p>
+  </section>
+  <section class="band verbos" aria-labelledby="verbos-title">
+    <div class="info">
+      <p class="label">Verb trainer</p>
+      <h2 class="line" id="verbos-title">One tense. Hecho.</h2>
+      <p class="body">Learn Spanish verbs one level at a time, with a short lesson and a typed quiz for each level.</p>
+      <div class="actions">
+        <a class="btn" href="https://verbos.hecho.fyi/">Open verbos</a>
+        <a class="link" href="/verbos/">More about verbos</a>
+      </div>
+    </div>
+    <p class="huge" aria-hidden="true">verbos</p>
+  </section>
 
-    <section class="section" aria-labelledby="apps">
-      <h2 id="apps">Apps</h2>
-      <div class="apps">
-        <article class="card app verbos">
-          <img src="/icons/verbos.svg" alt="">
-          <h3>Verbos</h3>
-          <p>Verb conjugation in 21 levels. Each level has a short lesson and a typed quiz, and a daily review brings back what you got wrong.</p>
-          <p class="meta">Web app · works offline</p>
-          <a class="btn" href="https://verbos.hecho.fyi/">Open Verbos</a>
-        </article>
-        <article class="card app charla">
-          <img src="/icons/charla.svg" alt="">
-          <h3>Charla</h3>
-          <p>Talk out loud in Spanish with an AI partner that remembers your earlier conversations and picks a new theme each day.</p>
-          <p class="meta">Web app · needs a free Gemini key</p>
-          <a class="btn" href="https://charla.hecho.fyi/">Open Charla</a>
-        </article>
-        <article class="card app traduce">
-          <img src="/icons/traduce.svg" alt="">
-          <h3>Traduce</h3>
-          <p>Select Spanish on any web page and read the English in the corner of the screen. It also works from English to Spanish.</p>
-          <p class="meta">Extension · Chrome, Edge, Brave, Dia</p>
-          <a class="btn" href="https://chromewebstore.google.com/detail/cdbloidgfaclhajkkmlfnnamggoledmg">Add to browser</a>
-        </article>
+    <section class="section not" aria-label="What hecho is not">
+      <ul>
+        <li>No streaks.</li>
+        <li>No scores.</li>
+        <li>No pressure.</li>
+      </ul>
+    </section>
+
+    <section class="section plus" aria-labelledby="plus-title">
+      <span class="mark" aria-hidden="true">~</span>
+      <div class="info">
+        <h2 id="plus-title">hecho+</h2>
+        <p class="line">One tense, one conversation, one article. Every morning, by email.</p>
+        <p class="body">A short email each morning with a tense, a conversation and an article, each linked to its app. It keeps a record of everything you have done.</p>
+        <form class="form" id="form" method="post" action="/api/interes">
+          <label class="hp" aria-hidden="true">Website <input name="web" tabindex="-1" autocomplete="off"></label>
+          <input type="email" name="email" required autocomplete="email" placeholder="tu@email.com" aria-label="Email">
+          <button class="btn" type="submit">Tell me when</button>
+        </form>
+        <p class="msg" id="msg" role="status"></p>
       </div>
     </section>
 
-    <section class="section split" aria-label="More">
-      <div class="card">
-        <h2>Privacy</h2>
-        <p>Your practice stays in your own browser. There is no account, and nothing is stored on a server.</p>
+    <section class="section donate" aria-labelledby="donate-title">
+      <div class="text">
+        <h2 id="donate-title">Free.<br>Help keep it that way.</h2>
+        <p class="body">Hecho has no ads and no paid features inside the apps. Donations pay for hosting and keep it free.</p>
       </div>
-      <div class="card">
-        <h2>Hecho+</h2>
-        <p>A paid version is in the works. It links the three apps with one daily email and one history of everything you have done.</p>
-        <a href="/plus/">Read about Hecho+</a>
-      </div>
+      <a class="btn" href="/apoyar/">Donate</a>
     </section>
   </main>
   <footer class="foot">
-    <span class="grow">Hecho · Zamora</span>
-    <a href="/apoyar/">Support</a>
-    <a href="/privacidad/">Privacy</a>
-    <a href="mailto:hola@hecho.fyi">hola@hecho.fyi</a>
+    <nav aria-label="Footer">
+      <a class="logo" href="/">hecho</a>
+      <a href="/charla/">charla</a>
+      <a href="/traduce/">traduce</a>
+      <a href="/verbos/">verbos</a>
+      <a href="/plus/">hecho+</a>
+      <a href="mailto:hola@hecho.fyi">Support</a>
+      <a href="/privacidad/">Privacy</a>
+    </nav>
+    <div class="credits">
+      <span>Bricolage Grotesque · Mathieu Triay</span>
+      <span>Instrument Sans · Instrument</span>
+      <span>JetBrains Mono · JetBrains</span>
+    </div>
   </footer>
+  <script>
+    const form = document.getElementById('form');
+    const msg = document.getElementById('msg');
+    const done = () => { form.hidden = true; msg.className = 'msg ok'; msg.textContent = '¡hecho!'; };
+    if (location.search.includes('ok=1')) done();
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button');
+      btn.disabled = true;
+      msg.className = 'msg'; msg.textContent = 'Sending…';
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { accept: 'application/json' } });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Something went wrong.');
+        done();
+      } catch (err) {
+        msg.className = 'msg bad'; msg.textContent = err.message;
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  </script>
 </body>
 </html>
