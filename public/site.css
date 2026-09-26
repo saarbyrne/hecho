@@ -91,7 +91,8 @@ img, svg { display: block; }
 .band { min-height: 720px; }
 .band .info, .tile .info { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; justify-items: start; }
 .band .info { padding: 64px var(--gutter) 40px; max-width: 800px; }
-.band .huge, .tile .huge, .page-hero .huge { margin-bottom: -0.12em; transform: translateX(var(--x, -0.05em)); }
+.band .huge, .tile .huge, .page-hero .huge { margin-bottom: -0.12em; transform: translateX(var(--x, -0.05em)); pointer-events: none; user-select: none; }
+.band .info, .tile .info, .page-hero .info { position: relative; z-index: 1; }
 .charla .huge { --x: -0.05em; }
 .traduce .huge { --x: -0.2em; }
 .verbos .huge { --x: 3vw; }
