@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="/site.css">
 </head>
 <body class="traduce">
-  <header class="page-hero">
+  <header class="page-hero tabbed">
   <nav class="nav" aria-label="Main">
     <a class="logo" href="/">hecho</a>
     <ul>
@@ -26,18 +26,42 @@
       <li><a class="btn small" href="/apoyar/">Donate</a></li>
     </ul>
   </nav>
-    <div class="info">
-      <p class="label">Browser translation · Free</p>
-      <h1 class="headline">Select a word.<br>Get it. Move on.</h1>
-      <p class="body">A browser extension for Chrome. Select Spanish or English on any page and the translation appears in the corner. You never leave the page.</p>
-      <div class="actions">
-        <a class="btn" href="https://chromewebstore.google.com/detail/cdbloidgfaclhajkkmlfnnamggoledmg">Add to Chrome</a>
-        <a class="link" href="#set-up">How to set it up</a>
-      </div>
-    </div>
+    <h1 class="sr">traduce</h1>
     <p class="huge" aria-hidden="true">traduce</p>
   </header>
+  <nav class="tabs" aria-label="traduce">
+    <a class="tab" href="#leer" data-tab="leer" aria-current="page">Leer</a>
+    <a class="tab" href="#set-up" data-tab="set-up">Set up</a>
+  </nav>
   <main>
+    <div class="panel" id="leer">
+    <section class="leer" aria-labelledby="leer-title">
+      <div class="leer-head">
+        <h2 class="sr" id="leer-title">Leer</h2>
+        <p class="label leer-date" id="leer-date"></p>
+      </div>
+      <div class="leer-filters">
+        <div class="leer-filter">
+          <p class="label" id="nivel-label">Nivel</p>
+          <div class="chips" id="levels" role="group" aria-labelledby="nivel-label"></div>
+        </div>
+        <div class="leer-filter">
+          <p class="label" id="temas-label">Temas</p>
+          <div class="chips" id="topics" role="group" aria-labelledby="temas-label"></div>
+        </div>
+      </div>
+      <ol class="articles" id="articles" lang="es"></ol>
+      <p class="small leer-empty" id="empty" hidden></p>
+    </section>
+    </div>
+    <div class="panel" id="set-up">
+    <section class="section pitch" aria-labelledby="pitch-title">
+      <p class="label">Browser translation · Free</p>
+      <h2 class="headline" id="pitch-title">Select a word.<br>Get it. Move on.</h2>
+      <div class="actions">
+        <a class="btn" href="https://chromewebstore.google.com/detail/cdbloidgfaclhajkkmlfnnamggoledmg">Add to Chrome</a>
+      </div>
+    </section>
     <section class="section" aria-labelledby="how">
       <h2 class="label" id="how">How it works</h2>
       <div class="steps">
@@ -60,7 +84,7 @@
       </div>
     </section>
 
-    <section class="section setup" id="set-up" aria-labelledby="setup-title">
+    <section class="section setup" id="set-up-steps" aria-labelledby="setup-title">
       <div class="steps-col">
         <p class="label">Set up</p>
         <h2 class="headline" id="setup-title">Ready in a minute.</h2>
@@ -83,14 +107,6 @@
       </div>
     </section>
 
-    <section class="section not" aria-label="What traduce is not">
-      <ul>
-        <li>No streaks.</li>
-        <li>No scores.</li>
-        <li>No pressure.</li>
-      </ul>
-      <p class="body">Look up a word when you need it, then get back to your reading.</p>
-    </section>
 
     <section class="section tight" aria-labelledby="faq">
       <h2 class="label" id="faq">Questions</h2>
@@ -101,27 +117,7 @@
       </dl>
     </section>
 
-    <section class="section tight" aria-labelledby="also">
-      <h2 class="label" id="also">Also from hecho</h2>
-      <div class="tiles">
-      <article class="tile charla">
-        <div class="info">
-          <h3>Talk it out.</h3>
-          <p class="body">Speak Spanish out loud, and pick up where you left off.</p>
-          <a class="btn" href="/charla/">Open charla</a>
-        </div>
-        <p class="huge" aria-hidden="true">charla</p>
-      </article>
-      <article class="tile verbos">
-        <div class="info">
-          <h3>One tense. Hecho.</h3>
-          <p class="body">Learn Spanish verbs one level at a time.</p>
-          <a class="btn" href="/verbos/">Open verbos</a>
-        </div>
-        <p class="huge" aria-hidden="true">verbos</p>
-      </article>
-      </div>
-    </section>
+    </div>
   </main>
   <footer class="foot">
     <nav aria-label="Footer">
@@ -139,5 +135,6 @@
       <span>JetBrains Mono · JetBrains</span>
     </div>
   </footer>
+  <script type="module" src="/traduce/leer.js"></script>
 </body>
 </html>

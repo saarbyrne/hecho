@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "npx wrangler@4 dev",
     "deploy": "npx wrangler@4 deploy",
-    "signups": "npx wrangler@4 kv key list --binding SIGNUPS --remote",
+    "signups": "npx wrangler@4 kv key list --binding SIGNUPS --remote --prefix email:",
     "test": "node --test \"tests/*.test.js\""
   },
   "engines": { "node": ">=22" }

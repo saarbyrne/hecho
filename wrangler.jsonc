@@ -23,5 +23,7 @@
     "NOTIFY_FROM": "hola@hecho.fyi",
     "NOTIFY_TO": "byrne.saar@gmail.com"
   },
+  // Leer: refresh one news feed every 15 minutes (see src/leer/).
+  "triggers": { "crons": ["*/15 * * * *"] },
   "observability": { "enabled": true }
 }
