@@ -4,7 +4,7 @@ How to work on Hecho. Read this before you pick up an issue.
 
 ## First steps
 
-1. Read the Obsidian notes in `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Projects/Hecho/`. Start with `Hecho.md` (direction, apps, plan, decisions), then `Setup.md` (to-do list and commands). `Hecho+.md` covers the paid version, `Costs.md` the prices checked so far, and `Brand/Type led.md` the brand.
+1. Read the Obsidian notes in `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Projects/Hecho/`. Start with `Hecho.md` (direction, apps, plan and status, decisions), then `Setup.md` (to-do list and commands). `Hecho+.md` covers the paid version, `Costs.md` the prices checked so far, `Brand/Type led.md` the brand, and `Reviews/` the code reviews and the grammar topic list.
 2. If you can't open the vault, ask Saar to attach those files. Don't work from memory.
 3. Read the issue and its epic. Check that every issue under "Depends on" is closed.
 4. Follow the decisions written in the issue, in the epic and in `Hecho.md`. Saar's open product decisions are numbered in `Hecho.md` → Open decisions, and issues refer to them by number. Settled ones are dated lines under Decisions.
@@ -19,7 +19,7 @@ How to work on Hecho. Read this before you pick up an issue.
 | `charla` | The first conversation app, kept until people move | charla.hecho.fyi | Push to `main` (GitHub Pages) |
 | `slugtranslate` | traduce, the Chrome extension | Chrome Web Store | Zip uploaded by Saar |
 
-All four are in `~/Github_Personal/` and on github.com/saarbyrne. Issues for all of them live in this repo.
+All four are in `~/Github_Personal/` and on github.com/saarbyrne. Issues for all of them live in this repo. From verbos, charla or slugtranslate, refer to an issue as `saarbyrne/hecho#12`, because a plain `#12` points at that repo's own issues.
 
 ## Layout
 
@@ -44,6 +44,7 @@ The epics add some of these folders. Check the tree before you assume one exists
 npm test                                            # all tests, nothing to install
 npm run dev                                         # site, app and API at http://localhost:8787
 npm run deploy                                      # publish hecho.fyi (Saar runs this)
+npm run check:gemini                                # try the Gemini key in .dev.vars
 npx wrangler@4 d1 migrations apply hecho --local    # local database
 npx wrangler@4 d1 migrations apply hecho --remote   # live database (Saar runs this)
 npx wrangler@4 secret put NAME                      # add a secret (Saar runs this)
