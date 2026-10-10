@@ -15,6 +15,7 @@ npm run deploy        # publish to hecho.fyi
 npm run signups       # list the Hecho+ sign-ups
 npm run db:setup      # create the database, once (see Database)
 npm run check:gemini  # try the Gemini key in .dev.vars (see Gemini key)
+npm run voice-test    # compare voice models for charla (see Voice test)
 ```
 
 `npx wrangler@4` runs Cloudflare's tool without installing it. The first run asks you to log in with `npx wrangler@4 login`.
@@ -78,3 +79,18 @@ To set up the key:
 5. In Terminal, in the hecho folder, run `npx wrangler@4 secret put GEMINI_API_KEY`. Paste the key when it asks.
 6. Run `cp .dev.vars.example .dev.vars` and `open -e .dev.vars`, then paste the key after `GEMINI_API_KEY=` and save. Git ignores this file.
 7. Run `npm run check:gemini`. It prints a short reply from Gemini and the token counts.
+
+## Voice test
+
+`npm run voice-test` compares voice models for charla on cost and replies. The plan is in Obsidian, `Projects/Hecho/Voice test.md`.
+
+- A Mac voice plays the learner. It reads Saar's answers from a real "5 preguntas" session, with pauses of 1.2 to 1.8 seconds, to every option in `scripts/voice-bench/script.mjs`.
+- It needs a Mac, a Spanish voice (System Settings → Accessibility → Spoken Content) and the Gemini key in `.dev.vars`.
+- It runs each option twice, at the same time, in about 8 minutes. `--only today,tuned` picks options and `--runs 1` changes the number of runs: `npm run voice-test -- --only tuned --runs 1`.
+- The report and each reply's audio go in `scripts/voice-bench/out/`, which git ignores, because it holds recordings and transcripts.
+- The report scores interruptions, the wait before each reply, how much Google's transcript got right, the question order, and each session's cost. Google bills every turn for the whole session so far, and the report also shows the cost if each token were billed once.
+- Besides the models, it tests three ways to lower that cost: a short context (Google drops the oldest part of the conversation), and two speech only options, where the app sends sound only while the learner speaks and marks the start and end of each line itself.
+- The `pipeline` option skips the Live API. Gemini 3.1 Flash-Lite gets each answer as audio and writes the reply, and Gemini 3.8 Flash-Lite TTS says it with a Spain Spanish voice from Google's voice library (`BENCH_TTS_VOICE` picks another). Each call bills only what it gets. `npm run voice-test -- --only pipeline` runs it on its own for about $0.05 (estimate).
+- `npm run voice-samples` says the same sentences in every Spain Spanish voice in Google's library and saves them in `scripts/voice-bench/out/voices-es/`, so the voice can be chosen by ear. It costs about $0.03 for all 22 (estimate).
+- On Tier 1, Google allows 10 voice requests a minute and 100 a day for the whole project, and the pipeline uses one for each reply. So `voice-samples` makes one every 7 seconds, and it skips voices that already have a file, so a second run fills in the ones that failed. `npm run voice-samples -- --again` makes them all again.
+- With all eight options it costs about $2.50 of API use (estimate), and on 10 October two runs went over a €5 spend cap. Check the cap in AI Studio first.

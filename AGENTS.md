@@ -100,7 +100,7 @@ You need Node 22.13 or later.
 
 - Never commit secrets. Secrets go in with `npx wrangler@4 secret put`. Local values go in `.dev.vars`, which git ignores.
 - Never put a real key in the design file or in screenshots. Show key fields with dots. GitHub blocks any push that contains a key.
-- The Gemini key stays on the server. The browser only gets short-lived tokens.
+- The Gemini key stays on the server. The Worker makes the Gemini calls, and the browser never gets the key or a token for it.
 - Store log-in tokens and session ids only as hashes.
 - Every table with a `user_id` column goes in `src/account/tables.js`, so it's included in the data download and the account delete. A test checks this.
 - Don't log emails, transcripts, tokens or keys.

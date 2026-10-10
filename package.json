@@ -9,6 +9,8 @@
     "deploy": "npx wrangler@4 deploy",
     "db:setup": "node scripts/db-setup.mjs",
     "check:gemini": "node scripts/check-gemini.mjs",
+    "voice-test": "node scripts/voice-bench/run.mjs",
+    "voice-samples": "node scripts/voice-bench/voices.mjs",
     "signups": "npx wrangler@4 kv key list --binding SIGNUPS --remote --prefix email:",
     "test": "node --disable-warning=ExperimentalWarning --test \"tests/*.test.js\""
   },
