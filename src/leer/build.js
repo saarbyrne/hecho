@@ -104,8 +104,8 @@ export async function refreshAll(kv, { now = new Date(), fetchFn = fetch, feeds 
   /** @type {ArticleList} */
   const stored = JSON.parse((await kv.get(KEY)) ?? 'null') ?? { updated: '', articles: [] };
   const articles = merge(stored.articles, results.flatMap((r) => r.articles), now);
-  const status = { ...(stored.feeds ?? {}) };
-  feeds.forEach((f, i) => { status[f.id] = results[i].status; });
+  // Every feed in the list was just read, so a feed taken out of the list leaves the report.
+  const status = Object.fromEntries(feeds.map((f, i) => [f.id, results[i].status]));
   await kv.put(KEY, JSON.stringify({ updated: now.toISOString(), articles, feeds: status }));
   return { total: articles.length };
 }
@@ -121,6 +121,16 @@ export async function refresh(kv, { now = new Date(), fetchFn = fetch, feeds = F
   const stored = JSON.parse((await kv.get(KEY)) ?? 'null') ?? { updated: '', articles: [] };
   const { articles: fresh, status } = await readFeed(feed, now, fetchFn);
   const articles = merge(stored.articles, fresh, now);
-  await kv.put(KEY, JSON.stringify({ updated: now.toISOString(), articles, feeds: { ...(stored.feeds ?? {}), [feed.id]: status } }));
+  await kv.put(KEY, JSON.stringify({ updated: now.toISOString(), articles, feeds: { ...listed(stored.feeds, feeds), [feed.id]: status } }));
   return { feed: feed.id, added: fresh.length, total: articles.length };
+}
+
+/**
+ * The saved statuses of the feeds still in the list. A feed taken out of the list leaves the report.
+ * @param {Record<string, FeedStatus> | undefined} saved @param {typeof FEEDS} feeds
+ * @returns {Record<string, FeedStatus>}
+ */
+function listed(saved, feeds) {
+  const old = saved ?? {};
+  return Object.fromEntries(feeds.filter((f) => old[f.id]).map((f) => [f.id, old[f.id]]));
 }

@@ -21,9 +21,16 @@
   "vars": {
     "STRIPE_URL": "https://buy.stripe.com/00w14ffEN11ve864p57g400",
     "NOTIFY_FROM": "hola@hecho.fyi",
-    "NOTIFY_TO": "byrne.saar@gmail.com"
+    "NOTIFY_TO": "byrne.saar@gmail.com",
+    // Gemini models, as named on ai.google.dev/gemini-api/docs/pricing on 9 Oct 2026. The key is the secret GEMINI_API_KEY.
+    "GEMINI_LIVE_MODEL": "gemini-3.8-live",
+    "GEMINI_TEXT_MODEL": "gemini-3.8-flash"
   },
   // Leer: refresh one news feed every 15 minutes (see src/leer/).
   "triggers": { "crons": ["*/15 * * * *"] },
-  "observability": { "enabled": true }
+  "observability": { "enabled": true },
+  // Accounts and other personal data: one D1 database, created in the EU (see migrations/).
+  "d1_databases": [
+    { "binding": "DB", "database_name": "hecho", "database_id": "e03d39fb-ac5d-4436-af7a-fc098cf17c7d", "migrations_dir": "migrations" }
+  ]
 }
