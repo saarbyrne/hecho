@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { parseFeed, plain } from '../src/leer/rss.js';
 import { syllables, inflesz, levelFor } from '../src/leer/level.js';
 import { topicsFor } from '../src/leer/topics.js';
-import { articlesFrom, merge, refresh, KEY } from '../src/leer/build.js';
+import { articlesFrom, merge, refresh, refreshAll, KEY } from '../src/leer/build.js';
 import worker from '../src/worker.js';
 
 const RSS = `<?xml version="1.0"?><rss xmlns:media="http://search.yahoo.com/mrss/"><channel><title>elDiario.es - Cultura</title>
@@ -30,6 +30,31 @@ test('parseFeed reads Atom entries', () => {
   const [e] = parseFeed(ATOM);
   assert.equal(e.link, 'https://example.com/e');
   assert.equal(e.date, '2026-09-27T08:00:00.000Z');
+});
+
+// The shape of elDiarioAR's feed on 9 Oct 2026: CDATA around every value, the link and date included,
+// a media:title next to the title, and the whole article as HTML in the description.
+const ELDIARIOAR = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>elDiarioAR.com - elDiarioAR.com</title>
+<item><title><![CDATA[La Corte Suprema frena un artículo del decreto]]></title>
+<link><![CDATA[https://www.eldiarioar.com/politica/corte-suprema-frena-articulo_1_100.html]]></link>
+<description><![CDATA[<p><img src="https://static.eldiario.es/clip/foto.jpg" /></p><div class="subtitles"><p class="subtitle">El tribunal dio la razón a las provincias.</p></div><p class="article-text">La <strong>Corte Suprema</strong> suspendió el artículo.</p><!--[if IE 9]><video style="display: none;"><![endif]-->]]></description>
+<dc:creator><![CDATA[Redacción]]></dc:creator>
+<guid isPermaLink="true"><![CDATA[https://www.eldiarioar.com/politica/corte-suprema-frena-articulo_1_100.html]]></guid>
+<pubDate><![CDATA[Fri, 09 Oct 2026 17:23:27 +0000]]></pubDate>
+<media:content url="https://static.eldiario.es/clip/foto.jpg" type="image/jpeg" width="1200" height="675"/>
+<media:title><![CDATA[Foto de la Corte]]></media:title>
+<media:keywords><![CDATA[Corte Suprema,Casa Rosada,Ley de Tierras]]></media:keywords>
+</item></channel></rss>`;
+
+test('parseFeed reads elDiarioAR items, with CDATA around the link and the date', () => {
+  const items = parseFeed(ELDIARIOAR);
+  assert.equal(items.length, 1);
+  assert.equal(items[0].title, 'La Corte Suprema frena un artículo del decreto');
+  assert.equal(items[0].link, 'https://www.eldiarioar.com/politica/corte-suprema-frena-articulo_1_100.html');
+  assert.equal(items[0].date, '2026-10-09T17:23:27.000Z');
+  assert.equal(items[0].text, 'El tribunal dio la razón a las provincias. La Corte Suprema suspendió el artículo.');
+  assert.deepEqual(items[0].tags, ['Corte Suprema', 'Casa Rosada', 'Ley de Tierras']);
 });
 
 test('plain strips tags and decodes entities', () => {
@@ -152,4 +177,15 @@ test('refreshAll records which feeds worked, and caps each source', async () => 
   assert.deepEqual([saved.feeds.bad.ok, saved.feeds.bad.error], [false, 'HTTP 403']);
   const many = Array.from({ length: 60 }, (_, i) => ({ title: 't', link: `l${i}`, source: 'A', date: '2026-09-27T10:00:00Z', level: 'medio', topics: [] }));
   assert.equal(merge([], many, now).length, MAX_PER_SOURCE);
+});
+
+test('a feed taken out of the list leaves the feeds report', async () => {
+  const now = new Date('2026-09-27T12:00:00Z');
+  const saved = { updated: '', articles: [], feeds: { infobae: { ok: false, count: 0, at: '', error: 'HTTP 403' } } };
+  for (const run of [refresh, refreshAll]) {
+    const store = kv();
+    store.m.set(KEY, JSON.stringify(saved));
+    await run(store, { now, feeds: [feed], fetchFn: async () => new Response(RSS) });
+    assert.deepEqual(Object.keys(JSON.parse(store.m.get(KEY)).feeds), ['f'], run.name);
+  }
 });

@@ -1,0 +1,2 @@
+# Copy this file to .dev.vars, then paste the key after the equals sign there. Git ignores .dev.vars.
+GEMINI_API_KEY=
