@@ -4,7 +4,10 @@ import { readFileSync } from 'node:fs';
 import { addDatabase, findDatabaseId, hasDatabase } from '../scripts/db-setup.mjs';
 import { parseJsonc } from '../scripts/jsonc.mjs';
 
-const CONFIG = readFileSync(new URL('../wrangler.jsonc', import.meta.url), 'utf8');
+const REAL = readFileSync(new URL('../wrangler.jsonc', import.meta.url), 'utf8');
+// `npm run db:setup` adds the database to wrangler.jsonc once, and the result is
+// committed. These tests start from the file as it was before, without it.
+const CONFIG = REAL.replace(/\n[ \t]*\/\/ Accounts and other personal data[^\n]*\n[ \t]*"d1_databases": \[[\s\S]*?\n[ \t]*\]/, '');
 const ID = '5f8a2c1e-3b4d-4e6f-8a9b-0c1d2e3f4a5b';
 const ENTRY = `{ "binding": "DB", "database_name": "hecho", "database_id": "${ID}", "migrations_dir": "migrations" }`;
 const COMMENT = '// Accounts and other personal data: one D1 database, created in the EU (see migrations/).';
@@ -38,6 +41,14 @@ binding = "DB" # i.e. available in your Worker on env.DB
 database_name = "hecho"
 database_id = "${ID}"
 `;
+
+test('the committed wrangler.jsonc has the database, and the tests start without it', () => {
+  assert.equal(hasDatabase(CONFIG), false);
+  if (hasDatabase(REAL)) {
+    assert.deepEqual(parseJsonc(REAL).d1_databases.map((d) => d.binding), ['DB']);
+    assert.equal(parseJsonc(REAL).d1_databases[0].database_name, 'hecho');
+  }
+});
 
 test('findDatabaseId reads the id from what wrangler d1 create prints', () => {
   assert.equal(findDatabaseId(WRANGLER_4), ID);

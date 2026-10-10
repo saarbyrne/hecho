@@ -5,3 +5,4 @@ node_modules/
 designs/*.jpg
 designs/image*.png
 designs/clipboard
+scripts/voice-bench/out/
